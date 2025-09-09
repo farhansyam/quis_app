@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quis_app/data/qustions.dart';
 
 class quizQuestion extends StatefulWidget {
   const quizQuestion({super.key});
@@ -13,12 +14,13 @@ class quizQuestion extends StatefulWidget {
 class _quizQuestionState extends State<quizQuestion> {
   @override
   Widget build(BuildContext context) {
+    final currentQuestion = questions[0];
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            'Pertannyan ?',
+            currentQuestion.question,
             style: TextStyle(fontSize: 20, color: Colors.white),
           ),
         ],
