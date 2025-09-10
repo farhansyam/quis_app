@@ -16,17 +16,28 @@ class _quizQuestionState extends State<quizQuestion> {
   @override
   Widget build(BuildContext context) {
     final currentQuestion = questions[0];
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            currentQuestion.question,
-            style: TextStyle(fontSize: 20, color: Colors.white),
-          ),
-          SizedBox(height: 20),
-          answetButton(answetText: 'answetText', onTap: () {}),
-        ],
+    return SizedBox(
+      width: double.infinity,
+      child: Container(
+        margin: EdgeInsets.all(40),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              currentQuestion.question,
+              style: TextStyle(fontSize: 20, color: Colors.white),
+            ),
+            SizedBox(height: 20),
+            ...currentQuestion.getShuffeledAnswer().map((shuffeledanswer) {
+              return Column(
+                children: [
+                  answetButton(answetText: shuffeledanswer, onTap: () {}),
+                  const SizedBox(height: 10),
+                ],
+              );
+            }),
+          ],
+        ),
       ),
     );
     ;

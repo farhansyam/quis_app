@@ -19,7 +19,15 @@ class startScreen extends StatelessWidget {
             style: TextStyle(fontSize: 20, color: Colors.white),
           ),
           SizedBox(height: 20),
-          ElevatedButton(onPressed: switchScreen, child: Text('Mulai Quiz')),
+          OutlinedButton.icon(
+            onPressed: switchScreen,
+            label: Text('Mulai Quiz'),
+            icon: Icon(Icons.arrow_circle_right_outlined),
+            style: OutlinedButton.styleFrom(
+              backgroundColor: Colors.white,
+              foregroundColor: Colors.blue,
+            ),
+          ),
         ],
       ),
     );

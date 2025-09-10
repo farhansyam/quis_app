@@ -4,9 +4,9 @@ class Questionmodel {
   final String question;
   final List<String> answer;
 
-  List<String> getShuffeledList() {
-    final shuffeledQuestion = List.of(answer);
-    shuffeledQuestion.shuffle();
-    return shuffeledQuestion;
+  List<String> getShuffeledAnswer() {
+    final shuffeledanswer = List.of(answer);
+    shuffeledanswer.shuffle();
+    return shuffeledanswer;
   }
 }

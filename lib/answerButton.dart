@@ -15,15 +15,15 @@ class answetButton extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return ElevatedButton(
+      onPressed: onTap,
       style: ElevatedButton.styleFrom(
         padding: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
-        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-        foregroundColor: const Color.fromARGB(255, 0, 0, 0),
+        backgroundColor: const Color.fromARGB(255, 0, 59, 111),
+        foregroundColor: Colors.white,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadiusGeometry.circular(20),
         ),
       ),
-      onPressed: onTap,
       child: Text(answetText),
     );
   }
