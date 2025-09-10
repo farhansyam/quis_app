@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quis_app/answerButton.dart';
 import 'package:quis_app/data/qustions.dart';
 
 class quizQuestion extends StatefulWidget {
@@ -23,6 +24,8 @@ class _quizQuestionState extends State<quizQuestion> {
             currentQuestion.question,
             style: TextStyle(fontSize: 20, color: Colors.white),
           ),
+          SizedBox(height: 20),
+          answetButton(answetText: 'answetText', onTap: () {}),
         ],
       ),
     );
