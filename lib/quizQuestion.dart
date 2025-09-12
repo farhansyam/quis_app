@@ -14,13 +14,22 @@ class quizQuestion extends StatefulWidget {
 
 class _quizQuestionState extends State<quizQuestion> {
   @override
+  var currentQuestionIndex = 0;
+
+  changeQuestionIdex() {
+    setState(() {
+      currentQuestionIndex++;
+    });
+  }
+
   Widget build(BuildContext context) {
-    final currentQuestion = questions[0];
+    final currentQuestion = questions[currentQuestionIndex];
     return SizedBox(
       width: double.infinity,
       child: Container(
         margin: EdgeInsets.all(40),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
@@ -28,18 +37,16 @@ class _quizQuestionState extends State<quizQuestion> {
               style: TextStyle(fontSize: 20, color: Colors.white),
             ),
             SizedBox(height: 20),
+
             ...currentQuestion.getShuffeledAnswer().map((shuffeledanswer) {
-              return Column(
-                children: [
-                  answetButton(answetText: shuffeledanswer, onTap: () {}),
-                  const SizedBox(height: 10),
-                ],
+              return answetButton(
+                answetText: shuffeledanswer,
+                onTap: changeQuestionIdex,
               );
             }),
           ],
         ),
       ),
     );
-    ;
   }
 }
