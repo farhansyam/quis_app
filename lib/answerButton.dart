@@ -24,7 +24,7 @@ class answetButton extends StatelessWidget {
           borderRadius: BorderRadiusGeometry.circular(20),
         ),
       ),
-      child: Text(answetText),
+      child: Text(answetText, textAlign: TextAlign.center),
     );
   }
 }

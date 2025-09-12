@@ -13,15 +13,21 @@ class quizQuestion extends StatefulWidget {
 }
 
 class _quizQuestionState extends State<quizQuestion> {
-  @override
   var currentQuestionIndex = 0;
 
-  changeQuestionIdex() {
+  void changeQuestionIdex() {
     setState(() {
       currentQuestionIndex++;
     });
   }
 
+  void buttonBack() {
+    setState(() {
+      currentQuestionIndex--;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     final currentQuestion = questions[currentQuestionIndex];
     return SizedBox(
@@ -44,6 +50,8 @@ class _quizQuestionState extends State<quizQuestion> {
                 onTap: changeQuestionIdex,
               );
             }),
+            SizedBox(height: 50),
+            ElevatedButton(onPressed: buttonBack, child: Text('Back')),
           ],
         ),
       ),
