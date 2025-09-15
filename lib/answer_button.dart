@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class answetButton extends StatelessWidget {
-  const answetButton({
+class answerButton extends StatelessWidget {
+  const answerButton({
     super.key,
-    required this.answetText,
+    required this.answerText,
     required this.onTap,
   });
 
-  final String answetText;
+  final String answerText;
   final void Function() onTap;
 
   @override
@@ -24,7 +24,7 @@ class answetButton extends StatelessWidget {
           borderRadius: BorderRadiusGeometry.circular(20),
         ),
       ),
-      child: Text(answetText, textAlign: TextAlign.center),
+      child: Text(answerText, textAlign: TextAlign.center),
     );
   }
 }

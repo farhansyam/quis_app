@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:quis_app/answerButton.dart';
+import 'package:quis_app/answer_button.dart';
 import 'package:quis_app/data/qustions.dart';
 
-class quizQuestion extends StatefulWidget {
-  const quizQuestion({super.key});
+class QuizQuestion extends StatefulWidget {
+  const QuizQuestion({super.key});
 
   @override
-  State<quizQuestion> createState() {
+  State<QuizQuestion> createState() {
     // TODO: implement createState
     return _quizQuestionState();
   }
 }
 
-class _quizQuestionState extends State<quizQuestion> {
+class _quizQuestionState extends State<QuizQuestion> {
   var currentQuestionIndex = 0;
 
   void changeQuestionIdex() {
@@ -45,8 +45,8 @@ class _quizQuestionState extends State<quizQuestion> {
             SizedBox(height: 20),
 
             ...currentQuestion.getShuffeledAnswer().map((shuffeledanswer) {
-              return answetButton(
-                answetText: shuffeledanswer,
+              return answerButton(
+                answerText: shuffeledanswer,
                 onTap: changeQuestionIdex,
               );
             }),

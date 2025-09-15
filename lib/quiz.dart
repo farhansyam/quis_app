@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quis_app/startScreen.dart';
-import 'package:quis_app/quizQuestion.dart';
+import 'package:quis_app/QuizQuestion.dart';
 
 class Quiz extends StatefulWidget {
   const Quiz({super.key});
@@ -22,7 +22,7 @@ class _QuizState extends State<Quiz> {
 
   void switchScreen() {
     setState(() {
-      activeScreen = quizQuestion();
+      activeScreen = QuizQuestion();
     });
   }
 
@@ -33,8 +33,8 @@ class _QuizState extends State<Quiz> {
         canPop: false, // kita kontrol tombol back
         onPopInvokedWithResult: (didPop, result) {
           if (didPop) return;
-          // kalau lagi di quizQuestion → balik ke startScreen
-          if (activeScreen is quizQuestion) {
+          // kalau lagi di QuizQuestion → balik ke startScreen
+          if (activeScreen is QuizQuestion) {
             setState(() {
               activeScreen = startScreen(switchScreen);
             });
