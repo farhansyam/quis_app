@@ -26,7 +26,10 @@ class _QuizState extends State<Quiz> {
   void restartQuestion() {
     selectedAnswer = [];
     setState(() {
-      activeScreen = QuizQuestion(chooseAnswer: chooseAnswer);
+      activeScreen = QuizQuestion(
+        chooseAnswer: chooseAnswer,
+        removeLastAnswer: removeLastAnswer,
+      );
     });
   }
 
@@ -48,13 +51,22 @@ class _QuizState extends State<Quiz> {
     setState(() {
       activeScreen = QuizQuestion(
         chooseAnswer: chooseAnswer,
+        removeLastAnswer: removeLastAnswer,
       ); // Pastikan mengirimkan chooseAnswer dengan benar
     });
+  }
+
+  void removeLastAnswer() {
+    if (selectedAnswer.isNotEmpty) {
+      selectedAnswer.removeLast(); // hapus jawaban terakhir
+      setState(() {}); // update UI kalau perlu
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: WillPopScope(
         onWillPop: () async {
           if (activeScreen is QuizQuestion) {

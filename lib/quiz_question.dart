@@ -6,9 +6,11 @@ class QuizQuestion extends StatefulWidget {
   const QuizQuestion({
     super.key,
     required this.chooseAnswer, // Pastikan parameter ini ada
+    required this.removeLastAnswer, // Pastikan parameter ini ada
   });
 
   final void Function(String) chooseAnswer; // Pastikan tipe parameter sesuai
+  final void Function() removeLastAnswer; // Pastikan tipe parameter sesuai
 
   @override
   State<QuizQuestion> createState() {
@@ -31,6 +33,7 @@ class _QuizQuestionState extends State<QuizQuestion> {
   void previousQuestion() {
     setState(() {
       currentQuestionIndex--;
+      widget.removeLastAnswer();
     });
   }
 
@@ -58,7 +61,8 @@ class _QuizQuestionState extends State<QuizQuestion> {
               );
             }),
             SizedBox(height: 50),
-            ElevatedButton(onPressed: previousQuestion, child: Text('Back')),
+            if (currentQuestionIndex > 0)
+              ElevatedButton(onPressed: previousQuestion, child: Text('Back')),
           ],
         ),
       ),
