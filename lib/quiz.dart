@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:quis_app/startScreen.dart';
-import 'package:quis_app/QuizQuestion.dart';
+import 'package:quis_app/result_screen.dart';
+import 'package:quis_app/start_screen.dart';
+import 'package:quis_app/quiz_question.dart';
+import 'package:quis_app/data/qustions.dart';
 
 class Quiz extends StatefulWidget {
   const Quiz({super.key});
@@ -13,34 +15,55 @@ class Quiz extends StatefulWidget {
 
 class _QuizState extends State<Quiz> {
   Widget? activeScreen;
+  List<String> selectedAnswer = [];
 
   @override
   void initState() {
     super.initState();
-    activeScreen = startScreen(switchScreen);
+    activeScreen = startScreen(switchScreen); // Pastikan startScreen valid
+  }
+
+  void restartQuestion() {
+    selectedAnswer = [];
+    setState(() {
+      activeScreen = QuizQuestion(chooseAnswer: chooseAnswer);
+    });
+  }
+
+  void chooseAnswer(String answer) {
+    selectedAnswer.add(answer);
+    debugPrint(selectedAnswer.toString());
+
+    if (selectedAnswer.length == questions.length) {
+      setState(() {
+        activeScreen = ResultScreen(
+          restartQuestion,
+          selectedAnswer: selectedAnswer,
+        );
+      });
+    }
   }
 
   void switchScreen() {
     setState(() {
-      activeScreen = QuizQuestion();
+      activeScreen = QuizQuestion(
+        chooseAnswer: chooseAnswer,
+      ); // Pastikan mengirimkan chooseAnswer dengan benar
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: PopScope(
-        canPop: false, // kita kontrol tombol back
-        onPopInvokedWithResult: (didPop, result) {
-          if (didPop) return;
-          // kalau lagi di QuizQuestion → balik ke startScreen
+      home: WillPopScope(
+        onWillPop: () async {
           if (activeScreen is QuizQuestion) {
             setState(() {
               activeScreen = startScreen(switchScreen);
             });
+            return false;
           } else {
-            // kalau sudah di startScreen → izinkan app keluar
-            Navigator.of(context).maybePop();
+            return true;
           }
         },
         child: Scaffold(

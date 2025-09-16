@@ -3,25 +3,32 @@ import 'package:quis_app/answer_button.dart';
 import 'package:quis_app/data/qustions.dart';
 
 class QuizQuestion extends StatefulWidget {
-  const QuizQuestion({super.key});
+  const QuizQuestion({
+    super.key,
+    required this.chooseAnswer, // Pastikan parameter ini ada
+  });
+
+  final void Function(String) chooseAnswer; // Pastikan tipe parameter sesuai
 
   @override
   State<QuizQuestion> createState() {
-    // TODO: implement createState
-    return _quizQuestionState();
+    return _QuizQuestionState();
   }
 }
 
-class _quizQuestionState extends State<QuizQuestion> {
+class _QuizQuestionState extends State<QuizQuestion> {
   var currentQuestionIndex = 0;
 
-  void changeQuestionIdex() {
+  void nextQuestion(String answer) {
     setState(() {
       currentQuestionIndex++;
+      widget.chooseAnswer(
+        answer,
+      ); // Menggunakan chooseAnswer yang diterima dari widget
     });
   }
 
-  void buttonBack() {
+  void previousQuestion() {
     setState(() {
       currentQuestionIndex--;
     });
@@ -44,14 +51,14 @@ class _quizQuestionState extends State<QuizQuestion> {
             ),
             SizedBox(height: 20),
 
-            ...currentQuestion.getShuffeledAnswer().map((shuffeledanswer) {
+            ...currentQuestion.getShuffeledAnswer().map((shuffledAnswer) {
               return answerButton(
-                answerText: shuffeledanswer,
-                onTap: changeQuestionIdex,
+                answerText: shuffledAnswer,
+                onTap: () => nextQuestion(shuffledAnswer),
               );
             }),
             SizedBox(height: 50),
-            ElevatedButton(onPressed: buttonBack, child: Text('Back')),
+            ElevatedButton(onPressed: previousQuestion, child: Text('Back')),
           ],
         ),
       ),
