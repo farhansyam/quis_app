@@ -41,15 +41,7 @@ Aplikasi **Quiz Flutter** interaktif dengan pertanyaan pilihan ganda, ringkasan 
 
 ## 🗂 Struktur Proyek
 
-lib/
-├─ main.dart # Entry point
-├─ quiz_question.dart # Layar pertanyaan kuis
-├─ result_screen.dart # Layar ringkasan kuis
-├─ answer_button.dart # Widget custom tombol jawaban
-└─ data/
-└─ questions.dart # Daftar pertanyaan & jawaban
-assets/
-└─ demo/ # Folder screenshot
+![Struktur Proyek](assets/demo/struktur.png)
 
 ---
 
